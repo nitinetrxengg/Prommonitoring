@@ -1,0 +1,33 @@
+apiVersion: monitoring.coreos.com/v1beta1
+kind: AlertmanagerConfig
+metadata:
+  name: alert-notifications
+  namespace: monitoringdemo
+  labels:
+    alertmanagerConfig: main
+spec:
+  route:
+    receiver: mail
+    groupby: [job]
+    group_interval: 5m
+    group_wait: 30s
+    repeat_interval: 2h
+  receivers:
+  - name: mail
+    emailConfigs:
+    - to: xxxxxxxxx
+      from: xxxxxxxx
+      smarthost: smtp.gmail.com:587
+      hello: smtp.gmail.com
+      authUsername: xxxxxxxx
+      authPassword:
+        name: mail-password
+        key: password
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mail-password
+  namespace: monitoringdemo
+stringData:
+  password: zzyrixeiewxmdutc
