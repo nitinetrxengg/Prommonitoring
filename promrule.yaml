@@ -15,4 +15,4 @@ spec:
       annotations:
             summary: Total request count is high
             description: example app {{ $labels.service }} - High request count
-            message: Total message count is {{ $value }
+            message: Total message count is {{ $value }}
